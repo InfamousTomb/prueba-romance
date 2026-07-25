@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra Historia</title>
+  <style>
+    /* Estilos generales y tipografía */
+    :root {
+      --primary-color: #e63946;
+      --secondary-color: #f1faee;
+      --accent-color: #a8dadc;
+      --text-color: #1d3557;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #6c757d;
+      margin-bottom: 25px;
+    }
+
+    /* Estructura del contador de tiempo */
+    .timer-container {
+      background-color: #fff0f3;
+      border: 1px solid #ffccd5;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .time-card {
+      background: var(--card-bg);
+      padding: 12px 5px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .time-card .number {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .time-card .label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      text-transform: uppercase;
+    }
+
+    /* Galería de imágenes */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Nota final */
+    .message {
+      font-style: italic;
+      color: #495057;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Nuestra Historia ❤️</h1>
+    <p class="subtitle">Cada segundo a tu lado cuenta</p>
+
+    <!-- Sección del Contador -->
+    <div class="timer-container">
+      <h3>Tiempo juntos:</h3>
+      <div class="timer-grid">
+        <div class="time-card">
+          <span class="number" id="days">0</span>
+          <span class="label">Días</span>
+        </div>
+        <div class="time-card">
+          <span class="number" id="hours">0</span>
+          <span class="label">Horas</span>
+        </div>
+        <div class="time-card">
+          <span class="number" id="minutes">0</span>
+          <span class="label">Minutos</span>
+        </div>
+        <div class="time-card">
+          <span class="number" id="seconds">0</span>
+          <span class="label">Segundos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Galería -->
+    <div class="gallery">
+      <!-- Reemplazar las URLs por las fotos deseadas -->
+      <img src="https://via.placeholder.com/300x400" alt="Recuerdo 1">
+      <img src="https://via.placeholder.com/300x400" alt="Recuerdo 2">
+      <img src="https://via.placeholder.com/300x400" alt="Recuerdo 3">
+    </div>
+
+    <!-- Mensaje personalizado -->
+    <p class="message">
+      "Gracias por compartir cada uno de estos días conmigo."
+    </p>
+  </div>
+
+  <script>
+    // CONFIGURACIÓN: Define la fecha de inicio (Año, Mes [0-11], Día, Hora, Minutos)
+    // Nota: Los meses en JavaScript van de 0 (Enero) a 11 (Diciembre).
+    const fechaInicio = new Date(2024, 0, 1, 0, 0, 0); 
+
+    function actualizarContador() {
+      const ahora = new Date();
+      const diferencia = ahora - fechaInicio;
+
+      // Cálculos de conversión de milisegundos
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
+
+      // Renderizado en el DOM
+      document.getElementById('days').innerText = dias;
+      document.getElementById('hours').innerText = horas;
+      document.getElementById('minutes').innerText = minutos;
+      document.getElementById('seconds').innerText = segundos;
+    }
+
+    // Ejecución continua cada segundo
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+  </script>
+</body>
+</html>
